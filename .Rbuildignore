@@ -1,0 +1,3 @@
+^test_images$
+^.*\.Rproj$
+^\.Rproj\.user$

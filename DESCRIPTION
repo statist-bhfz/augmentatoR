@@ -1,0 +1,16 @@
+Package: augmentatoR
+Type: Package
+Title: Image augmentation for deep learning
+Version: 0.1.0
+Authors@R: person("Andrey", "Ogurtsov", email = "ogurtsov.a.b@gmail.com",
+    role = c("aut", "cre"))
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: This package provides most common augmentations for images
+    using magick as backend: crop, rotate, flip/flop, adding noise etc.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports:
+    checkmate (>= 1.8.5),
+    magick (>= 2.0)
+RoxygenNote: 6.1.1
