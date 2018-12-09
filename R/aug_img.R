@@ -4,6 +4,10 @@
 #' @param params Named list of tranformation parameters (order matters - see Details).
 #' Each name should match one of \code{image_*} function:
 #' \code{"crop"} for \code{image_crop}, \code{"flip"} for \code{image_flip} and so on.
+#' List element contains constant values (image region size - \code{width}, \code{height};
+#' probability of particular transformation -  \code{prob}) and/or ranges
+#' for random parameters of particular transformation (\code{angle}, \code{x_off}).
+#'
 #'
 #' @return Transformed image (cropped or padded if necessary to keep original size).
 #' @examples
@@ -14,9 +18,19 @@
 #'                                     x_off = c(0, 30), y_off = c(0, 30))))
 #' @details
 #' Operations are applied to the image in order specified by \code{params} argument.
-#' Please note thant cropped and rotated image is not the same thing as
+#' Please note that cropped and rotated image is not the same thing as
 #' rotated and cropped one.
 #' Currently implemented transformations:
+#'
+#' * flip (parameterized by \code{prob} - probability of vertical reflection)
+#'
+#' * flop (parameterized by \code{prob} - probability of horizontal reflection)
+#'
+#' * crop (parameterized by \code{width} - width of cropped region,
+#' \code{higth} - higth of cropped region, \code{x_off} - x offset,
+#' \code{y_off} - y offset)
+#'
+#' * rotate (parameterized by \code{angle} - rotation angle)
 #'
 #' @import magick
 #' @export
