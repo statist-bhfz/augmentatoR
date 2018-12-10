@@ -104,4 +104,4 @@ aug_img <- function(img,
 # test_image <- image_scale(test_image, "224x224!")
 # img <- test_image
 # aug_img(test_image)
-#     "noise" = list("gaussian")
+

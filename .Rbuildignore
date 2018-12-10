@@ -1,3 +1,4 @@
+^README\.Rmd$
 ^test_images$
 ^.*\.Rproj$
 ^\.Rproj\.user$
