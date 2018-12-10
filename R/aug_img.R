@@ -27,10 +27,10 @@
 #' * flop (parameterized by \code{prob} - probability of horizontal reflection)
 #'
 #' * crop (parameterized by \code{width} - width of cropped region,
-#' \code{higth} - higth of cropped region, \code{x_off} - x offset,
-#' \code{y_off} - y offset)
+#' \code{higth} - higth of cropped region, \code{x_off} - x offset (min, max),
+#' \code{y_off} - y offset (min, max))
 #'
-#' * rotate (parameterized by \code{angle} - rotation angle)
+#' * rotate (parameterized by \code{angle} - rotation angle (min, max))
 #'
 #' @import magick
 #' @export
