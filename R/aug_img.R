@@ -26,11 +26,17 @@
 #'
 #' * flop (parameterized by \code{prob} - probability of horizontal reflection)
 #'
-#' * crop (parameterized by \code{width} - width of cropped region,
+#' * crop (parameterized by
+#' \code{width} - width of cropped region,
 #' \code{higth} - higth of cropped region, \code{x_off} - x offset (min, max),
 #' \code{y_off} - y offset (min, max))
 #'
 #' * rotate (parameterized by \code{angle} - rotation angle (min, max))
+#'
+#' * modulate (parameterized by
+#' \code{brightness} - brightness shift in  percentage of current value (min, max);
+#' \code{saturation} - saturation shift in  percentage of current value (min, max);
+#' \code{hue} - hue shift in  percentage of current value (min, max))
 #'
 #' @import magick
 #' @export
@@ -39,7 +45,10 @@ aug_img <- function(img,
                                   "flop" = list(prob = 0.5),
                                   "crop" = list(width = 180, height = 180,
                                                 x_off = c(0, 30), y_off = c(0, 30)),
-                                  "rotate" = list(angle = c(-25, 25))
+                                  "rotate" = list(angle = c(-25, 25)),
+                                  "modulate" = list(brightness = c(90, 110),
+                                                    saturation = c(95, 105),
+                                                    hue = c(80, 120))
                                   )
                     ) {
 
@@ -57,7 +66,7 @@ aug_img <- function(img,
         img <- do.call(fun, c(list(image = img), params[[name]]))
     }
 
-    #
+    # Change canvas to actual size
     img <- image_repage(img)
 
     if (all(img_dim == dim(img[[1]]))) {

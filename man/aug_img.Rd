@@ -6,7 +6,8 @@
 \usage{
 aug_img(img, params = list(flip = list(prob = 0.5), flop = list(prob =
   0.5), crop = list(width = 180, height = 180, x_off = c(0, 30), y_off =
-  c(0, 30)), rotate = list(angle = c(-25, 25))))
+  c(0, 30)), rotate = list(angle = c(-25, 25)), modulate = list(brightness
+  = c(90, 110), saturation = c(95, 105), hue = c(80, 120))))
 }
 \arguments{
 \item{img}{Image (object of class \code{"magick-image"}).}
@@ -39,6 +40,11 @@ Currently implemented transformations:
 \code{y_off} - y offset (min, max))
 
 * rotate (parameterized by \code{angle} - rotation angle (min, max))
+
+* modulate (parameterized by
+\code{brightness} - brightness shift in  percentage of current value (min, max);
+\code{saturation} - saturation shift in  percentage of current value (min, max);
+\code{hue} - hue shift in  percentage of current value (min, max))
 }
 \examples{
 frink <- image_read("https://jeroen.github.io/images/frink.png")
