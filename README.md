@@ -75,7 +75,7 @@ You can also use augmentation not listed in `?aug_img`:
 aug_img(img, list("noise" = list("gaussian")))
 ```
 
-<img src="man/figures/README-custom_aug-1.png" width="256" height="256" style="display: block; margin: auto;" />
+<img src="man/figures/README-custom_aug1-1.png" width="256" height="256" style="display: block; margin: auto;" />
 
 ``` r
 aug_img(img, 
@@ -85,6 +85,6 @@ aug_img(img,
                                          y_off = 0))))
 ```
 
-<img src="man/figures/README-custom_aug-2.png" width="256" height="256" style="display: block; margin: auto;" />
+<img src="man/figures/README-custom_aug2-1.png" width="256" height="256" style="display: block; margin: auto;" />
 
 The last example follows the same pattern as provided in default `params`. The only difference is explicit using of random number generation.

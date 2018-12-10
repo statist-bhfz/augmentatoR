@@ -74,8 +74,11 @@ image_append(c(image_append(img_1_2), image_append(img_3_4)),
 ```
 
 You can also use augmentation not listed in `?aug_img`:
-```{r custom_aug, fig.align = "center", out.width = "256", out.height = "256"}
+```{r custom_aug1, fig.align = "center", out.width = "256", out.height = "256"}
 aug_img(img, list("noise" = list("gaussian")))
+```
+
+```{r custom_aug2, fig.align = "center", out.width = "256", out.height = "256"}
 aug_img(img, 
         list("chop" = list(geometry_area(width = 30, 
                                          height = 0, 
