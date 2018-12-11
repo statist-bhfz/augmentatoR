@@ -20,11 +20,11 @@ Example
 Test image:
 
 ``` r
-library(magick)
+library(augmentatoR)
+#> Loading required package: magick
 #> Linking to ImageMagick 6.9.9.14
 #> Enabled features: cairo, freetype, fftw, ghostscript, lcms, pango, rsvg, webp
 #> Disabled features: fontconfig, x11
-library(augmentatoR)
 img <- image_read("man/figures/README-test_image.jpg")
 img
 ```

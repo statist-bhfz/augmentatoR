@@ -31,7 +31,6 @@ devtools::install_github("statist-bhfz/augmentatoR")
 Test image:
 
 ```{r example, out.width = "256", out.height = "256"}
-library(magick)
 library(augmentatoR)
 img <- image_read("man/figures/README-test_image.jpg")
 img
@@ -74,7 +73,7 @@ image_append(c(image_append(img_1_2), image_append(img_3_4)),
              stack = TRUE)
 ```
 
-You can also use augmentation not listed in `?aug_img`:
+You can also use augmentation not listed in `?aug_img` description:
 ```{r custom_aug1, out.width = "256", out.height = "256"}
 aug_img(img, list("noise" = list("gaussian")))
 ```
