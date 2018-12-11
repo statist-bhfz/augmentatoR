@@ -1,6 +1,8 @@
 #' Apply augmentations to single image.
 #'
 #' @param img Image (object of class \code{"magick-image"}).
+#' @param out_width Output image width (in pixels).
+#' @param out_height Output image height (in pixels).
 #' @param params Named list of tranformation parameters (order matters - see Details).
 #' Each name should match one of \code{image_*} function:
 #' \code{"crop"} for \code{image_crop}, \code{"flip"} for \code{image_flip} and so on.
@@ -9,7 +11,8 @@
 #' for random parameters of particular transformation (\code{angle}, \code{x_off}).
 #'
 #'
-#' @return Transformed image (cropped or padded if necessary to keep original size).
+#' @return Transformed image (cropped or padded if necessary to
+#' \code{(out_width, out_height)} size).
 #' @examples
 #' frink <- image_read("https://jeroen.github.io/images/frink.png")
 #' aug_img(frink)
@@ -41,6 +44,8 @@
 #' @import magick
 #' @export
 aug_img <- function(img,
+                    out_width = 224L,
+                    out_height = 224L,
                     params = list("flip" = list(prob = 0.5),
                                   "flop" = list(prob = 0.5),
                                   "crop" = list(width = 180, height = 180,
@@ -52,9 +57,7 @@ aug_img <- function(img,
                                   )
                     ) {
 
-    img_dim <- dim(img[[1]])
-    img_width <- dim(img[[1]])[2]
-    img_height <- dim(img[[1]])[3]
+    out_dim <- c(dim(img[[1]])[1], out_width, out_height)
 
     funs_params <- generate_random_params(params)
     funs <- funs_params$funs
@@ -69,31 +72,31 @@ aug_img <- function(img,
     # Change canvas to actual size
     img <- image_repage(img)
 
-    if (all(img_dim == dim(img[[1]]))) {
+    if (all(out_dim == dim(img[[1]]))) {
         return(img)
     }
 
     # White background if image is cropped compared to original size
-    if (any(img_dim > dim(img[[1]]))) {
+    if (any(out_dim > dim(img[[1]]))) {
         img <- image_composite(
-            image_read(array(255, dim = c(img_height, img_width, 3))),
+            image_read(array(255, dim = c(out_height, out_width, 3))),
             img,
             offset = geometry_point(
-                floor((img_width - dim(img[[1]])[2]) / 2),
-                floor((img_height - dim(img[[1]])[3]) / 2)
+                floor((out_width - dim(img[[1]])[2]) / 2),
+                floor((out_height - dim(img[[1]])[3]) / 2)
                 )
             )
     }
 
     # Crop if image is bigger compared to original size
-    if (any(img_dim < dim(img[[1]]))) {
+    if (any(out_dim < dim(img[[1]]))) {
         # crop if image became larger then original size
         img <- image_crop(img,
                           geometry = geometry_area(
-                              width = img_width,
-                              height = img_height,
-                              x_off = floor((dim(img[[1]])[2] - img_width) / 2),
-                              y_off = floor((dim(img[[1]])[3] - img_height) / 2)
+                              width = out_width,
+                              height = out_height,
+                              x_off = floor((dim(img[[1]])[2] - out_width) / 2),
+                              y_off = floor((dim(img[[1]])[3] - out_height) / 2)
                               )
                           )
     }

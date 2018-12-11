@@ -4,13 +4,18 @@
 \alias{aug_img}
 \title{Apply augmentations to single image.}
 \usage{
-aug_img(img, params = list(flip = list(prob = 0.5), flop = list(prob =
-  0.5), crop = list(width = 180, height = 180, x_off = c(0, 30), y_off =
-  c(0, 30)), rotate = list(angle = c(-25, 25)), modulate = list(brightness
-  = c(90, 110), saturation = c(95, 105), hue = c(80, 120))))
+aug_img(img, out_width = 224L, out_height = 224L, params = list(flip
+  = list(prob = 0.5), flop = list(prob = 0.5), crop = list(width = 180,
+  height = 180, x_off = c(0, 30), y_off = c(0, 30)), rotate = list(angle =
+  c(-25, 25)), modulate = list(brightness = c(90, 110), saturation = c(95,
+  105), hue = c(80, 120))))
 }
 \arguments{
 \item{img}{Image (object of class \code{"magick-image"}).}
+
+\item{out_width}{Output image width (in pixels).}
+
+\item{out_height}{Output image height (in pixels).}
 
 \item{params}{Named list of tranformation parameters (order matters - see Details).
 Each name should match one of \code{image_*} function:
@@ -20,7 +25,8 @@ probability of particular transformation -  \code{prob}) and/or ranges
 for random parameters of particular transformation (\code{angle}, \code{x_off}).}
 }
 \value{
-Transformed image (cropped or padded if necessary to keep original size).
+Transformed image (cropped or padded if necessary to
+\code{(out_width, out_height)} size).
 }
 \description{
 Apply augmentations to single image.
@@ -35,7 +41,8 @@ Currently implemented transformations:
 
 * flop (parameterized by \code{prob} - probability of horizontal reflection)
 
-* crop (parameterized by \code{width} - width of cropped region,
+* crop (parameterized by
+\code{width} - width of cropped region,
 \code{higth} - higth of cropped region, \code{x_off} - x offset (min, max),
 \code{y_off} - y offset (min, max))
 

@@ -34,20 +34,24 @@ img
 All transformations are controlled by single parameter `params`. Just modify default value to specify desired transformations and its settings (probability or intensity):
 
 ``` r
-img_1 <- aug_img(img, list(modulate = list(brightness  = c(50, 70), 
-                                           saturation = c(100, 100), 
-                                           hue = c(100, 100))))  
-img_2 <- aug_img(img, list(flop = list(prob = 1)))
-img_3 <- aug_img(img, list(crop = list(width = 180, 
-                                       height = 180, 
-                                       x_off = c(0, 30), 
-                                       y_off = c(0, 30)), 
-                           rotate = list(angle = c(25, 45))))
-img_4 <- aug_img(img, list(rotate = list(angle = c(25, 45)),
-                           crop = list(width = 180, 
-                                       height = 180, 
-                                       x_off = c(0, 30), 
-                                       y_off = c(0, 30))))
+img_1 <- aug_img(img,  out_width = 256, out_height = 256, 
+                 list(modulate = list(brightness  = c(50, 70), 
+                                      saturation = c(100, 100), 
+                                      hue = c(100, 100))))  
+img_2 <- aug_img(img, out_width = 256, out_height = 256, 
+                 list(flop = list(prob = 1)))
+img_3 <- aug_img(img, out_width = 256, out_height = 256, 
+                 list(crop = list(width = 180, 
+                                  height = 180, 
+                                  x_off = c(0, 30), 
+                                  y_off = c(0, 30)), 
+                      rotate = list(angle = c(25, 45))))
+img_4 <- aug_img(img, out_width = 256, out_height = 256, 
+                 list(rotate = list(angle = c(25, 45)),
+                      crop = list(width = 180, 
+                                  height = 180, 
+                                  x_off = c(0, 30), 
+                                  y_off = c(0, 30))))
 
 img_1_2 <- c(
     image_annotate(img_1, "Brightness", gravity = "south", 
@@ -72,13 +76,14 @@ image_append(c(image_append(img_1_2), image_append(img_3_4)),
 You can also use augmentation not listed in `?aug_img` description:
 
 ``` r
-aug_img(img, list("noise" = list("gaussian")))
+aug_img(img, out_width = 256, out_height = 256, 
+        list("noise" = list("gaussian")))
 ```
 
 <img src="man/figures/README-custom_aug1-1.png" width="256" height="256" style="display: block; margin: auto;" />
 
 ``` r
-aug_img(img, 
+aug_img(img, out_width = 256, out_height = 256, 
         list("chop" = list(geometry_area(width = 30, 
                                          height = 0, 
                                          x_off = round(runif(1, 1, 256)), 
