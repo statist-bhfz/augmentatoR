@@ -68,9 +68,9 @@ img_1_2 <- c(
 
 img_3_4 <- c(
     image_annotate(img_3, "Crop & rotate", gravity = "south", 
-                   size = 32, color = "black"),
+                   size = 32, color = "white"),
     image_annotate(img_4, "Rotate & crop", gravity = "south", 
-                   size = 32, color = "black")
+                   size = 32, color = "white")
 )
 
 image_append(c(image_append(img_1_2), image_append(img_3_4)), 

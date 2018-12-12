@@ -11,7 +11,7 @@
 #' for random parameters of particular transformation (\code{angle}, \code{x_off}).
 #'
 #'
-#' @return Transformed image (cropped or padded if necessary to
+#' @return Transformed image (cropped or 0-padded if necessary to
 #' \code{(out_width, out_height)} size).
 #' @examples
 #' frink <- image_read("https://jeroen.github.io/images/frink.png")
@@ -73,13 +73,15 @@ aug_img <- function(img,
     img <- image_repage(img)
 
     if (all(out_dim == dim(img[[1]]))) {
+        img <- image_transparent(img, color = "white")
+        img <- image_background(img, color = "black")
         return(img)
     }
 
-    # White background if image is cropped compared to original size
+    # White background if image is smaller than target size
     if (any(out_dim > dim(img[[1]]))) {
         img <- image_composite(
-            image_read(array(255, dim = c(out_height, out_width, 3))),
+            image_read(array(0, dim = c(out_height, out_width, 3))),
             img,
             offset = geometry_point(
                 floor((out_width - dim(img[[1]])[2]) / 2),
@@ -88,7 +90,7 @@ aug_img <- function(img,
             )
     }
 
-    # Crop if image is bigger compared to original size
+    # Crop if image is bigger than target size
     if (any(out_dim < dim(img[[1]]))) {
         # crop if image became larger then original size
         img <- image_crop(img,
@@ -100,6 +102,8 @@ aug_img <- function(img,
                               )
                           )
     }
+    img <- image_transparent(img, color = "white")
+    img <- image_background(img, color = "black")
     img
 }
 
