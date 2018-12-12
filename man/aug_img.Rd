@@ -25,7 +25,7 @@ probability of particular transformation -  \code{prob}) and/or ranges
 for random parameters of particular transformation (\code{angle}, \code{x_off}).}
 }
 \value{
-Transformed image (cropped or padded if necessary to
+Transformed image (cropped or 0-padded if necessary to
 \code{(out_width, out_height)} size).
 }
 \description{
