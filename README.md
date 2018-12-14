@@ -8,7 +8,7 @@ The goal of `augmentatoR` package is to provide image augmentations for deep lea
 Installation
 ------------
 
-You can install dev version of augmentatoR from [GitHub](https://github.com) with:
+You can install dev version of **augmentatoR** from [GitHub](https://github.com) with:
 
 ``` r
 devtools::install_github("statist-bhfz/augmentatoR")
