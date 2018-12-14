@@ -39,7 +39,7 @@ img
 All transformations are controlled by single parameter `params`. 
 Just modify default value to specify desired transformations and its settings (probability or intensity):
 
-```{r aug}
+```{r aug, out.width = "512", out.height = "512"}
 img_1 <- aug_img(img,  out_width = 256, out_height = 256, 
                  list(modulate = list(brightness  = c(50, 70), 
                                       saturation = c(100, 100), 

@@ -71,7 +71,7 @@ image_append(c(image_append(img_1_2), image_append(img_3_4)),
              stack = TRUE)
 ```
 
-<img src="man/figures/README-aug-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="man/figures/README-aug-1.png" width="512" height="512" style="display: block; margin: auto;" />
 
 You can also use augmentation not listed in `?aug_img` description:
 
